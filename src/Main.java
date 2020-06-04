@@ -23,7 +23,7 @@ public class Main {
         Session session = new Session();
         Map<Placeholder, Boolean> booleanMap = new HashMap<>();
         booleanMap.put(x, true);
-        booleanMap.put(y, true);
+        booleanMap.put(y, false);
         booleanMap.put(cin, true);
         List<Node> operations = new ArrayList<>(fullAdder.run().values());
         List<Boolean> outputs = session.run(operations, booleanMap);

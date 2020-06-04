@@ -1,9 +1,9 @@
 package Gates;
 
+import ComptationalGraph.BinaryOperation;
 import ComptationalGraph.Node;
-import ComptationalGraph.Operation;
 
-public class Or extends Operation {
+public class Or extends BinaryOperation {
     public Or(Node x, Node y) {
         super(x, y);
     }

@@ -1,10 +1,10 @@
 package Gates;
 
 
+import ComptationalGraph.BinaryOperation;
 import ComptationalGraph.Node;
-import ComptationalGraph.Operation;
 
-public class Xor extends Operation {
+public class Xor extends BinaryOperation {
 
     public Xor(Node x, Node y) {
         super(x, y);

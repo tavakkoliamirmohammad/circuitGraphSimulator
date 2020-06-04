@@ -32,4 +32,5 @@ public abstract class Node {
     public boolean getInput(int index){
         return this.inputs.get(index);
     }
+
 }

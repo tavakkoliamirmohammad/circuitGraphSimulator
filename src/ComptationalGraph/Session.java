@@ -1,9 +1,5 @@
 package ComptationalGraph;
 
-import ComptationalGraph.Node;
-import ComptationalGraph.Operation;
-import ComptationalGraph.Placeholder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,28 +8,28 @@ public class Session {
 
     public List<Boolean> run(List<Node> operations, Map<Placeholder, Boolean> feed) {
         List<Boolean> outputs = new ArrayList<>();
-       for (Node operation : operations){
-           List<Node> nodePostOrder = traversePostOrder(operation);
+        for (Node operation : operations) {
+            List<Node> nodePostOrder = traversePostOrder(operation);
 
-           for (Node node : nodePostOrder) {
-               if (node instanceof Placeholder) {
-                   Placeholder placeholder = (Placeholder) node;
-                   placeholder.setOutput(feed.get(placeholder));
-               } else if (node instanceof Variable) {
-                   Variable variable = (Variable) node;
-                   variable.setOutput(variable.getValue());
-               } else {
-                   Operation op = (Operation) node;
-                   List<Boolean> nodeOutput = new ArrayList<>();
-                   for (Node inputNode : op.inputNodes){
-                       nodeOutput.add(inputNode.getOutput());
-                   }
-                   op.setInputs(nodeOutput);
-                   op.setOutput(op.compute(op.getInput(0), op.getInput(1)));
-               }
-           }
-           outputs.add(operation.getOutput());
-       }
+            for (Node node : nodePostOrder) {
+                if (node instanceof Placeholder) {
+                    Placeholder placeholder = (Placeholder) node;
+                    placeholder.setOutput(feed.get(placeholder));
+                } else if (node instanceof Variable) {
+                    Variable variable = (Variable) node;
+                    variable.setOutput(variable.getValue());
+                } else {
+                    Operation op = (Operation) node;
+                    List<Boolean> nodeOutput = new ArrayList<>();
+                    for (Node inputNode : op.inputNodes) {
+                        nodeOutput.add(inputNode.getOutput());
+                    }
+                    op.setInputs(nodeOutput);
+                    op.setOutput(op.computeOutput(op.getInputs()));
+                }
+            }
+            outputs.add(operation.getOutput());
+        }
         return outputs;
     }
 

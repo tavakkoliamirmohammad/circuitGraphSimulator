@@ -1,8 +1,5 @@
 package ComptationalGraph;
 
-import ComptationalGraph.Graph;
-import ComptationalGraph.Node;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,5 +18,6 @@ public abstract class Operation extends Node {
         Graph.defaultGraph.addOperation(this);
     }
 
-    public abstract boolean compute(boolean x, boolean y);
+    //    protected abstract boolean compute(boolean x, boolean y);
+    public abstract boolean computeOutput(List<Boolean> inputs);
 }
