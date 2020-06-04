@@ -2,6 +2,9 @@ package Circuit;
 
 import ComptationalGraph.Component;
 import ComptationalGraph.Node;
+import Gates.And;
+import Gates.Not;
+import Gates.Or;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +24,11 @@ public class Mux2By1 implements Component {
     @Override
     public Map<String, Node> run() {
         Map<String, Node> outputs = new HashMap<>();
-
-
-        return null;
+        Not notS = new Not(s);
+        And xAndSnot = new And(x, notS);
+        And yAndS = new And(y, s);
+        Or result = new Or(yAndS, xAndSnot);
+        outputs.put("result", result);
+        return outputs;
     }
 }
