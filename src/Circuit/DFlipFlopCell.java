@@ -25,13 +25,15 @@ public class DFlipFlopCell implements Component {
     @Override
     public Map<String, Node> run() {
         Map<String, Node> outputs = new HashMap<>();
-        Nand nand1 = new Nand(d, clk);
-        Not notD = new Not(d);
-        Nand nand2 = new Nand(notD, clk);
-        Nand nand3 = new Nand(nand1, qBar);
-        Nand nand4 = new Nand(nand2, q);
-        outputs.put("Q", nand3);
-        outputs.put("QBar", nand4);
+//        Nand nand1 = new Nand(d, clk);
+//        Not notD = new Not(d);
+//        Nand nand2 = new Nand(notD, clk);
+//        Nand nand3 = new Nand(nand1, qBar);
+//        Nand nand4 = new Nand(nand2, q);
+//        outputs.put("Q", nand3);
+//        outputs.put("QBar", nand4);
+        outputs.put("Q", d);
+        outputs.put("QBar", new Not(d));
         return outputs;
     }
 }

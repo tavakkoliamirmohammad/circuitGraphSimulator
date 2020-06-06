@@ -7,11 +7,11 @@ import ComptationalGraph.Variable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FourBitCounter implements Component {
+public class TwoBitCounter implements Component {
     private Variable[] qbars;
     private Node clk;
 
-    public FourBitCounter(Node clk) {
+    public TwoBitCounter(Node clk) {
         this.clk = clk;
         qbars = new Variable[2];
         for (int i = 0; i < qbars.length; ++i) {

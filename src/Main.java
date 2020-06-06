@@ -1,5 +1,7 @@
+import Circuit.DFlipFlop;
 import Circuit.FullAdder;
 import Circuit.Mux4to1;
+import Circuit.TwoBitCounter;
 import ComptationalGraph.Graph;
 import ComptationalGraph.Node;
 import ComptationalGraph.Placeholder;
@@ -17,25 +19,26 @@ public class Main {
     public static void main(String[] args) {
         Graph.createGraph();
 
-        Placeholder x = new Placeholder();
-        Placeholder y = new Placeholder();
-        Placeholder cin = new Placeholder();
-        FullAdder fullAdder = new FullAdder(x, y, cin);
+//        Placeholder x = new Placeholder();
+//        Placeholder y = new Placeholder();
+//        Placeholder cin = new Placeholder();
+//        FullAdder fullAdder = new FullAdder(x, y, cin);
+//
+//        Session session = new Session();
+//        Map<Placeholder, Boolean> booleanMap = new HashMap<>();
+//        booleanMap.put(x, true);
+//        booleanMap.put(y, false);
+//        booleanMap.put(cin, true);
+//        List<Node> operations = new ArrayList<>(fullAdder.run().values());
+//        List<Boolean> outputs = session.run(operations, booleanMap);
+//        for (boolean res: outputs){
+//            System.out.println(res);
+//        }
+//        outputs = session.run(operations, booleanMap);
+//        for (boolean res: outputs){
+//            System.out.println(res);
+//        }
 
-        Session session = new Session();
-        Map<Placeholder, Boolean> booleanMap = new HashMap<>();
-        booleanMap.put(x, true);
-        booleanMap.put(y, false);
-        booleanMap.put(cin, true);
-        List<Node> operations = new ArrayList<>(fullAdder.run().values());
-        List<Boolean> outputs = session.run(operations, booleanMap);
-        for (boolean res: outputs){
-            System.out.println(res);
-        }
-        outputs = session.run(operations, booleanMap);
-        for (boolean res: outputs){
-            System.out.println(res);
-        }
 //        Placeholder[] x = {new Placeholder(), new Placeholder(), new Placeholder(), new Placeholder()};
 //        Placeholder[] s = {new Placeholder(), new Placeholder()};
 //        Mux4to1 mux4to1 = new Mux4to1(x, s);
@@ -55,5 +58,27 @@ public class Main {
 //        for (boolean res : outputs) {
 //            System.out.println(res);
 //        }
+
+        Placeholder clk = new Placeholder();
+        Placeholder d = new Placeholder();
+        TwoBitCounter twoBitCounter = new TwoBitCounter(clk);
+        DFlipFlop dFlipFlop = new DFlipFlop(d, clk);
+        Session session = new Session();
+        Map<Placeholder, Boolean> booleanMap = new HashMap<>();
+        booleanMap.put(clk, false);
+        booleanMap.put(d, true);
+        for (int i = 0; i < 10; ++i) {
+            List<Node> operations = new ArrayList<>(dFlipFlop.run().values());
+            List<Boolean> outputs = session.run(operations, booleanMap);
+            System.out.println("------------------");
+//            System.out.println(i);
+            for (Boolean b : outputs) {
+                System.out.print(b + " ");
+            }
+            booleanMap.put(d, !d.getOutput());
+            System.out.println();
+            System.out.println("------------------");
+
+        }
     }
 }
