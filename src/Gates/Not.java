@@ -9,7 +9,7 @@ public class Not extends UnaryOperation {
     }
 
     @Override
-    protected boolean compute(boolean x) {
+    public boolean compute(boolean x) {
         return !x;
     }
 }

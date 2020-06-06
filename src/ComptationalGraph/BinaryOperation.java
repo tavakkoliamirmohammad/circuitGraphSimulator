@@ -8,7 +8,7 @@ public abstract class BinaryOperation extends Operation {
         super(x, y);
     }
 
-    protected abstract boolean compute(boolean x, boolean y);
+    public abstract boolean compute(boolean x, boolean y);
 
     @Override
     public boolean computeOutput(List<Boolean> inputs) {
