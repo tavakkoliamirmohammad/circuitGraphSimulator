@@ -65,13 +65,12 @@ public class Main {
         DFlipFlop dFlipFlop = new DFlipFlop(d, clk);
         Session session = new Session();
         Map<Placeholder, Boolean> booleanMap = new HashMap<>();
-        booleanMap.put(clk, false);
+        booleanMap.put(clk, true);
         booleanMap.put(d, true);
         for (int i = 0; i < 10; ++i) {
-            List<Node> operations = new ArrayList<>(dFlipFlop.run().values());
+            List<Node> operations = new ArrayList<>(twoBitCounter.run().values());
             List<Boolean> outputs = session.run(operations, booleanMap);
             System.out.println("------------------");
-//            System.out.println(i);
             for (Boolean b : outputs) {
                 System.out.print(b + " ");
             }

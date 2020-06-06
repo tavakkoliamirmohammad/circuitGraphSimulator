@@ -32,8 +32,10 @@ public class DFlipFlopCell implements Component {
 //        Nand nand4 = new Nand(nand2, q);
 //        outputs.put("Q", nand3);
 //        outputs.put("QBar", nand4);
-        outputs.put("Q", d);
-        outputs.put("QBar", new Not(d));
+        Mux2By1 mux2By1 = new Mux2By1(q, d, clk);
+        Map<String, Node> output1 = mux2By1.run();
+        outputs.put("Q", output1.get("result"));
+        outputs.put("QBar", new Not(output1.get("result")));
         return outputs;
     }
 }
