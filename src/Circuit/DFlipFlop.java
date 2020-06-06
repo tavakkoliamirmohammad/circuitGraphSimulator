@@ -24,11 +24,10 @@ public class DFlipFlop implements Component {
     @Override
     public Map<String, Node> run() {
         System.out.println("d: " + d.getOutput());
-        System.out.println("before q: " + q.getValue());
+        System.out.println("clk: " + clk.getOutput());
         DFlipFlopCell dFlipFlopCell = new DFlipFlopCell(clk, d, q, qBar);
         Map<String, Node> output = dFlipFlopCell.run();
         q.setValue(output.get("Q").getOutput());
-        System.out.println("after q: " + q.getValue());
         qBar.setValue(output.get("QBar").getOutput());
         return output;
     }

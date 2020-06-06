@@ -3,7 +3,6 @@ package Circuit;
 import ComptationalGraph.Component;
 import ComptationalGraph.Node;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Mux4to1 implements Component {
